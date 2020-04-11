@@ -33,8 +33,8 @@ const render = () => {
 
   $todos.innerHTML = html;
 
-  $completedTodos.innerHTML = todos.filter(todo => todo.completed).length;
-  $activeTodos.innerHTML = todos.filter(todo => !todo.completed).length;
+  $completedTodos.textContent = todos.filter(todo => todo.completed).length;
+  $activeTodos.textContent = todos.filter(todo => !todo.completed).length;
 };
 
 const getTodos = () => {
@@ -51,7 +51,7 @@ const generateId = () => (todos.length ? Math.max(...todos.map(todo => todo.id))
 
 window.onload = getTodos;
 
-$inputTodo.onkeyup = (e) => {
+$inputTodo.onkeyup = e => {
   if (e.keyCode !== 13) return;
   todos = [{ id: generateId(), content: $inputTodo.value, completed: false }, ...todos];
   e.target.value = '';
